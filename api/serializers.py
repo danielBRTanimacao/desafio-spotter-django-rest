@@ -36,11 +36,11 @@ class FavoriteUserBookSerializer(serializers.ModelSerializer):
     
 
 class UserSerializer(serializers.ModelSerializer):
-    favorite_books = FavoriteUserBookSerializer(many=True, read_only=True, source='favorite_books')
+    favorite_books = FavoriteUserBookSerializer(many=True, read_only=True)
     
     class Meta:
         model = User
-        fields = 'username', 'password',
+        fields = 'username', 'password', 'favorite_books',
         extra_kwargs = {
             'password': {'write_only': True},
         }

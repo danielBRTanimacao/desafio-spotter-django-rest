@@ -101,10 +101,37 @@ class AuthorDetailApiView(APIView):
         return Response({'message': f'Author deleted "{author_name}"'}, status=status.HTTP_204_NO_CONTENT)
     
 
-class UserRegisterApiView(APIView): ...
+class UserRegisterApiView(APIView):
+    permission_classes = [AllowAny]
 
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
 
-class UserLoginApiView(APIView): ...
+        if not username or not password:
+            return Response({"error": "All fields are need"}, status=status.HTTP_400_BAD_REQUEST)
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "User exist"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        user = User.objects.create(username=username, password=password)
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class UserLoginApiView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Invalid fields"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserApiView(APIView):
