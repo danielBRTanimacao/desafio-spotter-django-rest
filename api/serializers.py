@@ -5,19 +5,19 @@ from .models import Book, Author, FavoriteUserBook
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        exclude = 'id',
+        fields = '__all__'
 
 
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = 'first_name', 'last_name',
+        fields = '__all__'
 
 
 class FavoriteUserBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoriteUserBook
-        fields = 'user', 'book', 
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
