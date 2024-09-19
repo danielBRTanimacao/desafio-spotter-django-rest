@@ -1,6 +1,6 @@
 # Challenge Spotter Django Rest
 
-<img src="imagem.png" alt="img-project">
+<img src="./img-readme/img-postman.jpg" alt="img-project">
 
 ### About challenge 💪
 
