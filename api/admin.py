@@ -1,7 +1,6 @@
 from django.contrib import admin
 from api.models import Author, Book, FavoriteUserBook
 
-# Register your models here.
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):

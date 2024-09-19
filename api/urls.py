@@ -8,5 +8,6 @@ urlpatterns = [
     path('authors/<int:id>/', views.AuthorDetailApiView.as_view(), name='specific_author'),
     path('register/', views.UserRegisterApiView.as_view(), name='register'),
     path('login/', views.UserLoginApiView.as_view(), name='login'),
-    path('user/', views.UserApiView.as_view(), name='user'),
+    path('favorite-books/', views.UserApiView.as_view(), name='favorite_books'),
+    path('favorite-books/<int:id>/', views.UserDetailApiView.as_view(), name='specific_favorite_book'),
 ]

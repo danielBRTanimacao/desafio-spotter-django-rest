@@ -19,28 +19,10 @@ class FavoriteUserBookSerializer(serializers.ModelSerializer):
         model = FavoriteUserBook
         fields = '__all__'
 
-
-class FavoriteUserBookSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FavoriteUserBook
-        fields = ['book']
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['book'] = {
-            'user': instance.book.user,
-            'author': instance.book.author,
-            'add_date': instance.book.add_date
-        }
-        return representation
-    
-
-class UserSerializer(serializers.ModelSerializer):
-    favorite_books = FavoriteUserBookSerializer(many=True, read_only=True)
-    
+class UserSerializer(serializers.ModelSerializer):    
     class Meta:
         model = User
-        fields = 'username', 'password', 'favorite_books',
+        fields = 'username',
         extra_kwargs = {
             'password': {'write_only': True},
         }
