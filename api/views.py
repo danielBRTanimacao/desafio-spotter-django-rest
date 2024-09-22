@@ -34,7 +34,7 @@ class BookApiView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
 
 class BookDetailApiView(APIView):
     permission_classes = [AllowAny]
@@ -81,7 +81,7 @@ class AuthorApiView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
 
 class AuthorDetailApiView(APIView):
     permission_classes = [AllowAny]
@@ -108,7 +108,7 @@ class AuthorDetailApiView(APIView):
         author_name = author.name
         author.delete()
         return Response({'message': f'Author deleted "{author_name}"'}, status=status.HTTP_204_NO_CONTENT)
-    
+
 
 class UserRegisterApiView(APIView):
     permission_classes = [AllowAny]
@@ -146,7 +146,7 @@ class UserApiView(APIView):
         book.is_valid(raise_exception=True)
         book.save()
         return Response(book.data, status=status.HTTP_201_CREATED)
-    
+
 
 class UserDetailApiView(APIView):
     permission_classes = [IsAuthenticated]
